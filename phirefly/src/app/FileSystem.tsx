@@ -19,7 +19,7 @@ const Filesystem = () => {
       <FileList id={1}>
         {fileData?.map((file) => (
           <File
-            id={file.lastModified}
+            key={file.lastModified}
             file={file}
             name={file.name}
             moveFile={moveFile}

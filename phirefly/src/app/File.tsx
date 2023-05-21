@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { useDrag } from "react-dnd";
 
-const File = ({ id, name, moveFile, file }) => {
+const File = ({ name, moveFile, file }) => {
   const [showPreview, setShowPreview] = useState(false);
 
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: "file",
-    item: { id },
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
-      if (item && dropResult) {
-        moveFile(item.id, dropResult.id);
-      }
-    },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  }));
+  //   const [{ isDragging }, drag] = useDrag(() => ({
+  //     type: "file",
+  //     item: { id },
+  //     end: (item, monitor) => {
+  //       const dropResult = monitor.getDropResult();
+  //       if (item && dropResult) {
+  //         moveFile(item.id, dropResult.id);
+  //       }
+  //     },
+  //     collect: (monitor) => ({
+  //       isDragging: monitor.isDragging(),
+  //     }),
+  //   }));
 
   const renderFilePreview = () => {
     if (!file) {
@@ -60,11 +60,11 @@ const File = ({ id, name, moveFile, file }) => {
 
   return (
     <div
-      ref={drag}
+      //   ref={drag}
       style={{
         display: "flex",
         alignItems: "center",
-        opacity: isDragging ? 0.5 : 1,
+        // opacity: isDragging ? 0.5 : 1,
         cursor: "move",
         width: 800,
         height: 50,
