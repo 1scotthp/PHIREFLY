@@ -1,24 +1,12 @@
 import { useState } from "react";
 import { useDrag } from "react-dnd";
 
-const File = ({ name, moveFile, file }) => {
+const File = (file: any) => {
+  console.log("eee", file);
   const [showPreview, setShowPreview] = useState(false);
 
-  //   const [{ isDragging }, drag] = useDrag(() => ({
-  //     type: "file",
-  //     item: { id },
-  //     end: (item, monitor) => {
-  //       const dropResult = monitor.getDropResult();
-  //       if (item && dropResult) {
-  //         moveFile(item.id, dropResult.id);
-  //       }
-  //     },
-  //     collect: (monitor) => ({
-  //       isDragging: monitor.isDragging(),
-  //     }),
-  //   }));
-
   const renderFilePreview = () => {
+    console.log(file);
     if (!file) {
       return null;
     }
@@ -41,17 +29,14 @@ const File = ({ name, moveFile, file }) => {
     return <p>Unsupported file format</p>;
   };
 
-  const formatUnixTime = (unixTime) => {
-    // const milliseconds = unixTime * 1000; // Convert Unix timestamp to milliseconds
-    const date = new Date(unixTime);
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    return date.toLocaleString(undefined, options);
-  };
+  const formatUnixTime = (unixTime: number): string => {
+    let date = new Date(unixTime); // JavaScript uses milliseconds, so we need to multiply by 1000
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1; // JavaScript's getMonth() starts at 0 for January
+    let day = date.getDate();
 
+    return month + "-" + day + "-" + year;
+  };
   const preview = (
     <div style={{ width: 200, backgroundColor: "grey", flex: 1 }}>
       {renderFilePreview()}
@@ -60,11 +45,9 @@ const File = ({ name, moveFile, file }) => {
 
   return (
     <div
-      //   ref={drag}
       style={{
         display: "flex",
         alignItems: "center",
-        // opacity: isDragging ? 0.5 : 1,
         cursor: "move",
         width: 800,
         height: 50,
@@ -77,7 +60,7 @@ const File = ({ name, moveFile, file }) => {
       >
         Show Preview
       </button>
-      <p style={{ width: 400 }}> {name}</p>
+      <p style={{ width: 400 }}> {file.name}</p>
 
       <p style={{ marginLeft: 12, width: 200 }}>
         {formatUnixTime(file.lastModified)}

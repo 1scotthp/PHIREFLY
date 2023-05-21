@@ -9,10 +9,10 @@ import { FileContext, FileContextProvider } from "./FileContextProvider";
 
 function FileUploadComponent() {
   const { fileData, addNewFiles } = useContext(FileContext);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<File[]>([]);
 
-  const handleUpload = (event) => {
-    const uploadedFiles = Array.from(event.target.files);
+  const handleUpload = (event: any) => {
+    const uploadedFiles: File[] = Array.from(event.target.files);
     addNewFiles(uploadedFiles);
   };
 
@@ -21,7 +21,7 @@ function FileUploadComponent() {
       <input type="file" multiple onChange={handleUpload} />
       <ul>
         {files.map((file, index) => (
-          <li key={index}>{file.name}</li>
+          <li key={index}>{file?.name}</li>
         ))}
       </ul>
     </div>

@@ -1,15 +1,24 @@
 "use client";
 import React, { createContext, useState } from "react";
 
+type FileContextType = {
+  fileData: File[];
+  addNewFiles: (newFileData: File[]) => void;
+};
+
 // Create the context
-const FileContext = createContext({});
+const FileContext = createContext<FileContextType>({
+  fileData: [],
+  addNewFiles: () => {},
+});
 
 // Create a provider component
-const FileContextProvider = ({ children }) => {
-  const [fileData, setFileData] = useState<File>([]);
+const FileContextProvider = ({ children }: any) => {
+  const [fileData, setFileData] = useState<File[]>([]);
 
-  const addNewFiles = (newFileData: string[]) => {
-    setFileData((fileData) => [...fileData, ...newFileData]);
+  const addNewFiles = (newFileData: File[]) => {
+    console.log(newFileData);
+    setFileData((fileData: File[]) => [...fileData, ...newFileData]);
   };
 
   return (
