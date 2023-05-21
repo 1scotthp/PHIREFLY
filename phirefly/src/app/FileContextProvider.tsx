@@ -17,7 +17,6 @@ const FileContextProvider = ({ children }: any) => {
   const [fileData, setFileData] = useState<File[]>([]);
 
   const addNewFiles = (newFileData: File[]) => {
-    console.log(newFileData);
     setFileData((fileData: File[]) => [...fileData, ...newFileData]);
   };
 

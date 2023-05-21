@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useDrag } from "react-dnd";
 
-const File = (file: any) => {
-  console.log("eee", file);
+const File = ({ fileObject }: any) => {
   const [showPreview, setShowPreview] = useState(false);
+  const file = fileObject;
 
   const renderFilePreview = () => {
-    console.log(file);
     if (!file) {
       return null;
     }
@@ -60,10 +58,10 @@ const File = (file: any) => {
       >
         Show Preview
       </button>
-      <p style={{ width: 400 }}> {file.name}</p>
+      <p style={{ width: 400 }}> {file?.name}</p>
 
       <p style={{ marginLeft: 12, width: 200 }}>
-        {formatUnixTime(file.lastModified)}
+        {formatUnixTime(file?.lastModified)}
       </p>
 
       {showPreview && preview}

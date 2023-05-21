@@ -11,7 +11,7 @@ const Filesystem = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       {fileData?.map((file: File) => (
-        <File key={file.lastModified} file={file} />
+        <File fileObject={file} key={file.lastModified} />
       ))}
     </DndProvider>
   );
