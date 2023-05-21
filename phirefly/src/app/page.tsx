@@ -11,9 +11,14 @@ function FileUploadComponent() {
   const { fileData, addNewFiles } = useContext(FileContext);
   const [files, setFiles] = useState<File[]>([]);
 
+  const sendFilesToServer = (files: any) => {
+    // add stuff here
+  };
+
   const handleUpload = (event: any) => {
     const uploadedFiles: File[] = Array.from(event.target.files);
     addNewFiles(uploadedFiles);
+    sendFilesToServer(uploadedFiles);
   };
 
   return (
