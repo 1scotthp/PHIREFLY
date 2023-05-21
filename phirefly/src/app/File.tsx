@@ -11,7 +11,7 @@ const File = (file: any) => {
       return null;
     }
 
-    if (file.type.includes("image/")) {
+    if (file.type?.includes("image/")) {
       return <img src={URL.createObjectURL(file)} alt="File Preview" />;
     }
 
