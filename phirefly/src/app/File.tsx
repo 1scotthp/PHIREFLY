@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 const File = ({ fileObject }: any) => {
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState('');
+  // const [previewContent, setPreviewContent] = useState('');
   const file = fileObject;
 
   const renderFilePreview = () => {
@@ -26,7 +27,6 @@ const File = ({ fileObject }: any) => {
 
     return <p>Unsupported file format</p>;
   };
-
   const formatUnixTime = (unixTime: number): string => {
     let date = new Date(unixTime); // JavaScript uses milliseconds, so we need to multiply by 1000
     let year = date.getFullYear();
@@ -41,6 +41,31 @@ const File = ({ fileObject }: any) => {
     </div>
   );
 
+  function handleShowPreview() {
+    // Assuming `file` is the file to preview
+    const formData = new FormData();
+    formData.append('image', file);
+  
+    fetch('http://localhost:5000/ocr', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      // convert json value into string
+      // const dataString = JSON.stringify(data);
+      const dataString = JSON.stringify(data['extracted_text']);
+      setShowPreview(dataString); 
+      // Handle the preview data
+      // display data to the screen
+      // For example, setting it to state and then displaying it
+    })
+    .catch(error => {
+      // Handle any errors here
+    });
+  }; 
+
   return (
     <div
       style={{
@@ -53,11 +78,14 @@ const File = ({ fileObject }: any) => {
       }}
     >
       <button
-        onClick={() => setShowPreview(!showPreview)}
+        onClick={handleShowPreview}
         style={{ marginRight: 24, marginLeft: 4, width: 150 }}
       >
         Show Preview
       </button>
+      <div className="preview-container">
+        {showPreview}
+      </div>
       <p style={{ width: 400 }}> {file?.name}</p>
 
       <p style={{ marginLeft: 12, width: 200 }}>
