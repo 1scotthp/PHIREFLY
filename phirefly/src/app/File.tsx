@@ -47,6 +47,8 @@ const File = ({ fileObject }: any) => {
     formData.append('image', file);
   
     fetch('http://localhost:5000/ocr', {
+      // add cors
+      mode: 'cors',
       method: 'POST',
       body: formData,
     })
@@ -54,8 +56,9 @@ const File = ({ fileObject }: any) => {
     .then(data => {
       console.log(data);
       // convert json value into string
-      // const dataString = JSON.stringify(data);
-      const dataString = JSON.stringify(data['extracted_text']);
+      const dataString = JSON.stringify(data);
+      // const dataString = JSON.stringify(data['extracted_text']);
+      // setShowPreview(data);
       setShowPreview(dataString); 
       // Handle the preview data
       // display data to the screen
