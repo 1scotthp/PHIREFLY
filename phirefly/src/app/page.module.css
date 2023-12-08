@@ -206,6 +206,7 @@
     );
     z-index: 1;
   }
+  
 }
 
 /* Tablet and Smaller Desktop */
@@ -233,3 +234,53 @@
     transform: rotate(0deg);
   }
 }
+
+/* File Preview Container */
+.summary-container {
+  width: 100%;
+  background-color: #f8f9fa; /* A light grey background for a subtle look */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners for a modern feel */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* A subtle shadow for depth */
+  margin-top: 20px; /* Spacing from the top */
+  overflow-wrap: break-word; /* Ensures the text breaks to prevent overflow */
+}
+
+/* Preview Paragraph Styling */
+.preview-paragraph {
+  margin-bottom: 16px; /* Spacing between paragraphs */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+  font-size: 16px; /* Readable font size */
+  line-height: 1.6; /* Spacing between lines for better readability */
+  color: #333; /* Slightly muted text color for easy reading */
+}
+
+/* File Upload Button */
+.file-upload-btn {
+  background-color: #007bff; /* A bright blue for visibility */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px; /* Rounded corners for the button */
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.file-upload-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover for interactivity */
+}
+
+/* Input for file upload - hidden but accessible */
+.file-input {
+  display: none; /* Hidden but still can be triggered by JavaScript */
+}
+
+/* Styles for the File Name and Last Modified Text */
+.file-info-text {
+  margin-left: 12px;
+  width: 200px; /* Set a fixed width for alignment */
+  font-size: 14px; /* Smaller font size for metadata */
+  color: #666; /* Lighter text color for metadata */
+}
+
